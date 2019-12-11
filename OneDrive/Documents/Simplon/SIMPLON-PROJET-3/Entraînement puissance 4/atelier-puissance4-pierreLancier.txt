@@ -1,0 +1,65 @@
+//Toujours procéder par étapes, checker très régulièrement les étapes de l'évancement de son travail
+screen.addGrid({
+    color: '#F0FFFF',
+    step:  1
+})
+
+// 1ère étapes : je crée une fonction qui me permettra de dessiner un cercle qui feras office de pion pour le puissance 4
+function drawPawn (x, y, color) {
+    screen.addCircle({
+        center: {
+            x: x,
+            y: y
+//La définition des variables est libre, mais pour que cela soit logique, elles correspondents aux propriétés de la fonction
+        },
+        radius: 0.5,
+        fillColor: color
+    })
+}
+
+/*for (var x = 0; x < 7; x += 1) {
+    for (var y = 0; y < 6; y += 1) {
+        var color = '#FF0000'
+        if (x < 4 && y > 3) {
+            color = '#FFFF00'
+        }
+        drawPawn(x, y, color)
+    }
+
+}
+*/
+
+var columnA = ['#FF0000', '#FFFF00', '#FFFF00', '#FF0000']
+
+
+var columnB = ['#FF0000', '#FFFF00', '#FF0000']
+//2èmes étapes: nous assignons à des variables des tableaux représentant nos colonnes, celles-ci se retrouvent au sein d'un tableau que nous utiliserons par la suite
+
+function drawColumn (x, column) {
+    for (var y = 0; y < column.length; y += 1) {
+        var color = column[y]
+        drawPawn(x, y, color)
+    }
+}
+//3èmes étapes : Comme nous réalisons "un tableau de colonnes" nous procédons par étapes en s'attaquant d'abord à la hauteur y (les colonnes), en parcourant la taille de nos colonnes(colonnes.lenght)
+
+var board = [
+    columnA,
+    columnB
+]
+
+function drawBoard () {
+    for (var x = 0; x < board.length; x += 1) {
+        var column = board[x]
+        drawColumn(x, column)
+    }
+//4èmes étapes : ensuite nous nous attaquons au "board"(x) en parcourant la taille du board que nous avons définis afin de déssiner les colonnes
+}
+
+drawBoard()
+
+//L'utilisation d'un tableau dans un tableau nous permet de mieux structurer le principe de boucle dans une boucle afin de définir la hateur et la largeur de notre plateau de puissance 4 
+
+
+
+

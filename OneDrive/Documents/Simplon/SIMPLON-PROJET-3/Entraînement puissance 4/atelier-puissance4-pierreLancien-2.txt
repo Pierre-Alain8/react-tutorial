@@ -1,0 +1,84 @@
+screen.addGrid({
+    color: '#F0FFFF',
+    step:  1
+})
+
+function drawPawn (x, y, color) {
+    screen.addCircle({
+        center: {
+            x: x,
+            y: y
+        },
+        radius: 0.5,
+        fillColor: color
+    })
+}
+
+/*for (var x = 0; x < 7; x += 1) {
+    for (var y = 0; y < 6; y += 1) {
+        var color = '#FF0000'
+        if (x < 4 && y > 3) {
+            color = '#FFFF00'
+        }
+        drawPawn(x, y, color)
+    }
+}
+*/
+
+var columnA = ['#FF0000', '#FFFF00', '#FFFF00', '#FF0000']
+
+
+var columnB = ['#FF0000', '#FFFF00', '#FF0000']
+
+
+function drawColumn (x, column) {
+    for (var y = 0; y < column.length; y += 1) {
+        var color = column[y]
+        drawPawn(x, y, color)
+    }
+}
+
+var board = [
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    []
+]
+
+//La méthode push permet d'ajouter 1 ou plusieurs éléments au sein d'un tableau
+
+function fill () {
+    for (var i = 0; i < 30; i += 1) {
+        var x = random.intBetween(0, 6)
+        var color = '#FF0000'
+        if (random() < 0.5) {
+            color = '#FFFF00'
+        }
+        board[x].push(color)
+    }
+}
+
+
+function drawBoard () {
+    for (var x = 0; x < board.length; x += 1) {
+        var column = board[x]
+        drawColumn(x, column)
+    }
+}
+
+
+fill()
+
+drawBoard()
+
+
+
+
+
+
+
+
+
